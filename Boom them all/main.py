@@ -12,10 +12,8 @@ class Bomb(pygame.sprite.Sprite):
         super(Bomb, self).__init__(*args)
         self.image = self.bomb
         self.rect = self.image.get_rect()
-        self.rect.x = randint(self.image.get_width() // 2,
-                              screen_size[0] - self.image.get_width())
-        self.rect.y = randint(self.image.get_height() // 2,
-                              screen_size[1] - self.image.get_height())
+        self.rect.x = randint(0, screen_size[0] - self.image.get_width())
+        self.rect.y = randint(0, screen_size[1] - self.image.get_height())
         self.flag = True
 
     def update(self, *args):
@@ -73,6 +71,6 @@ if __name__ == '__main__':
     pygame.init()
     game = Game(size=(500, 500), bg_color=(0, 0, 0), title="Boom them all", FPS=30)
     game.add_group("bombs")
-    for _ in range(20):
+    for _ in range(20000):
         game.objects_groups["bombs"].add(Bomb(game.size))
     game.play()
